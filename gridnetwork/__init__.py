@@ -1,7 +1,6 @@
 """This package set up the app and server."""
 
 import os
-from typing import Union
 
 from flask import Blueprint, Flask
 from flask_migrate import Migrate
@@ -63,9 +62,7 @@ def set_database_config(app, db_config=None, verbose=False):
     db.init_app(app)
 
 
-def create_app(
-    debug=False, secret_key=DEFAULT_SECRET_KEY, db_config=Union[None, dict]
-) -> Flask:
+def create_app(debug=False, secret_key=DEFAULT_SECRET_KEY, db_config=None) -> Flask:
     """Create Flask app.
 
     Args:
