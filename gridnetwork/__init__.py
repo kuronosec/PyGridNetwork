@@ -16,6 +16,9 @@ http = Blueprint(r"http", __name__)
 # Set db client instance
 db = SQLAlchemy()
 
+from . import utils  # isort:skip
+from . import routes, events  # isort:skip
+
 
 DEFAULT_SECRET_KEY = "justasecretkeythatishouldputhere"
 __version__ = "0.1.0"
@@ -43,7 +46,7 @@ def set_database_config(app, db_config=None, verbose=False):
                 SQLALCHEMY_DATABASE_URI=db_url, SQLALCHEMY_TRACK_MODIFICATIONS=False
             )
         else:
-            raise RecursionError(
+            raise RuntimeError(
                 "Invalid database address: Set DATABASE_URL environment var or add db_config parameter at create_app method."
             )
     else:
